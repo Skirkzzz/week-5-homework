@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Project Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Pacifico&family=Roboto:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Weather Dashboard</h1>
+            <p id="date-time"></p>
+        </div>
+    </div>
+
+    <section class="row justify-content-around">
+        <div class="card" style="width: 18rem">
+            <div class="card-body">
+                <h5 class="card-title">Search for a City</h5>
+                <!-- Enter city Value -->
+                <div class="form-group">
+                    <label for="password-input">Select a City</label>
+                    <input type="password" class="form-control" id="password-input">
+                </div>
+                <form type="text" class="form-input w-100" id="city-input" name="city-input" placeholder="Enter a City" ">
+                  <button type="submit " class="btn btn-primary ">Submit</button>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-9 row justify-content-center border border-lg pt-2 rounded " id="projects ">
+            <div class="w-100 row justify-content-center h-25 pt-2 ">
+                <table class="table table-bordered ">
+                    <thead class="bg-light ">
+                        <tr>
+                            <th>
+                                <h5>Current City:</h5>
+                            </th>
+                            <th>
+                                <h5>Date:</h5>
+                            </th>
+                            <th>
+                                <h5>Icon</h5>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="projectList "></tbody>
+                </table>
+            </div>
+            <div>
+            <ul id="sortable ">
+              <li class="ui-state-default ">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s "></span>Temp:
+              </li>
+              <li class="ui-state-default ">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s "></span>Wind:
+              </li>
+              <li class="ui-state-default ">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s "></span>Humidity:
+              </li>
+              <li class="ui-state-default ">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s "></span>UV Index
+              </li>
+            </ul>
+        </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row justify-content-around ">
+
+      <div class="col-12 col-sm-1 col-lg-1 mb-1 ">
+        <div class="card ">
+          <h3 class="card-header bg-info ">
+            Previous Searches
+          </h3>
+          <div class="card-body ">
+            <p class="card-text ">
+              Cities
+            </p>
+            <button class="btn btn-block btn-info ">Learn more.</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-1 col-lg-1 mb-1 ">
+        <div class="card ">
+          <h3 class="card-header bg-success ">
+            Day +1
+          </h3>
+          <div class="card-body ">
+            <p class="card-text ">
+               - List
+            </p>
+            <button class="btn btn-block btn-info ">Learn more.</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-1 col-lg-1 mb-1 ">
+        <div class="card ">
+          <h3 class="card-header bg-warning ">
+            Day +2
+          </h3>
+          <div class="card-body ">
+            <p class="card-text ">
+              - List
+            </p>
+            <button class="btn btn-block btn-info ">Learn more.</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-1 col-lg-1 mb-1 ">
+        <div class="card ">
+          <h3 class="card-header bg-warning ">
+            Day +3
+          </h3>
+          <div class="card-body ">
+            <p class="card-text ">
+              - List
+            </p>
+            <button class="btn btn-block btn-info ">Learn more.</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-1 col-lg-1 mb-1 ">
+        <div class="card ">
+          <h3 class="card-header bg-warning ">
+            Day +4
+          </h3>
+          <div class="card-body ">
+            <p class="card-text ">
+              - List
+            </p>
+            <button class="btn btn-block btn-info ">Learn more.</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-1 col-lg-1 mb-1 ">
+        <div class="card ">
+          <h3 class="card-header bg-warning ">
+            Day +5
+          </h3>
+          <div class="card-body ">
+            <p class="card-text ">
+              - List
+            </p>
+            <button class="btn btn-block btn-info ">Learn more.</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js "></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js "></script>
+
+    <!-- jQuery UI <link> tag -->
+
+    <script src="./script.js "></script>
+  </body>
+</html>
