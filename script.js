@@ -1,74 +1,60 @@
-'strict'
-// Assemble: Create/select DOM elements
-var rootEl = $('#root');
-var formEl = $('#new-project-form');
-var newProjectBtn = $('#createProjectBtn');
+$(document).ready(function () {
+  // listen for save button clicks
+  $('.saveBtn').on('click', function () {
+    // get nearby values
+    var value = $(this).siblings('.description').val();
+    var time = $(this).parent().attr('id');
 
-var today = moment();
-$("#date-time").text(today.format("MMM Do, YYYY HH:mm:ss"));
+    // save in localStorage
+    localStorage.setItem(time, value);
 
-// Clock Timer at the Top of the page
-setInterval(function() {
-    var today = moment();
-    $("#date-time").text(today.format("MMM Do, YYYY"));
-}, 1000);
+    // Show notification that item was saved to localStorage by adding class 'show'
+    $('.notification').addClass('show');
 
-var projectList = $('#projectList');
+    // Timeout to remove 'show' class after 5 seconds
+    setTimeout(function () {
+      $('.notification').removeClass('show');
+    }, 5000);
+  });
 
-function setFormError(message) {
-    $('#project-warning').text(message);
-    $('#project-warning').addClass('show');
+  function hourUpdater() {
+    // get current number of hours
+    var currentHour = moment().hours();
 
-    setTimeout(function() {
-        $('#project-warning').removeClass('show');
-    }, 3000);
-}
+    // loop over time blocks
+    $('.time-block').each(function () {
+      var blockHour = parseInt($(this).attr('id').split('-')[1]);
 
-function newProject() {
-    var projectName = $('#project-name').val();
-    var projectType = $('#project-type').val();
-    var hourlyWage = $('#hourly-wage').val();
-    var dueDate = $('#due-date').val();
+      // check if we've moved past this time
+      if (blockHour < currentHour) {
+        $(this).addClass('past');
+      } else if (blockHour === currentHour) {
+        $(this).removeClass('past');
+        $(this).addClass('present');
+      } else {
+        $(this).removeClass('past');
+        $(this).removeClass('present');
+        $(this).addClass('future');
+      }
+    });
+  }
 
-    if (!projectName) {
-        setFormError('Please enter a project name.');
-        return;
-    }
+  hourUpdater();
 
-    var daysDue = 26; //dueDate.diff(today, 'days');
-    var totalEarned = daysDue * hourlyWage;
-    var deleteOption = `<button class="btn btn-danger" onclick="deleteProject(this)">Delete</button>`;
-    var newProject = $(`<tr><td>${projectName}</td><td>${projectType}</td><td>${hourlyWage}</td><td>${dueDate}</td><td>${daysDue}</td><td>${totalEarned}</td><td>${deleteOption}</td></tr>`);
-    return (newProject);
-}
+  // set up interval to check if current time needs to be updated
+  var interval = setInterval(hourUpdater, 15000);
 
-function onCreateNewProject(event) {
-    event.preventDefault();
-    console.log("onCreateNewProject");
+  // load any saved data from localStorage
+  $('#hour-9 .description').val(localStorage.getItem('hour-9'));
+  $('#hour-10 .description').val(localStorage.getItem('hour-10'));
+  $('#hour-11 .description').val(localStorage.getItem('hour-11'));
+  $('#hour-12 .description').val(localStorage.getItem('hour-12'));
+  $('#hour-13 .description').val(localStorage.getItem('hour-13'));
+  $('#hour-14 .description').val(localStorage.getItem('hour-14'));
+  $('#hour-15 .description').val(localStorage.getItem('hour-15'));
+  $('#hour-16 .description').val(localStorage.getItem('hour-16'));
+  $('#hour-17 .description').val(localStorage.getItem('hour-17'));
 
-    // Create a new project
-    var project = newProject();
-    if (!project) {
-        return;
-    }
-    projectList.append(project);
-
-    // Hide the New Project Modal
-    $('#projectModal').modal('hide');
-
-    // Reset the form
-    resetNewProjectForm();
-}
-
-function resetNewProjectForm() {
-    $('#project-name').val('');
-    $("#project-type").val($("#project-type option:first").val());
-    $('#hourly-wage').val('75');
-    $('#due-date').val('');
-}
-
-function deleteProject(button) {
-    $(button).parent().parent().remove();
-}
-
-newProjectBtn.on("click", onCreateNewProject);
+  // display current day on page
+  $('#currentDay').text(moment().format('dddd, MMMM Do'));
+});
