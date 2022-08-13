@@ -40,6 +40,6 @@ The following animation demonstrates the application functionality:
 
 ## Links
 
-Link to github repository and README: https://github.com/Skirkzzz/week-4-homework
+Link to github repository and README: https://github.com/Skirkzzz/week-5-homework
 
-Lik to deployed application: https://skirkzzz.github.io/week-4-homework/
+Lik to deployed application: https://skirkzzz.github.io/week-5-homework/
